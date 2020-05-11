@@ -1,0 +1,24 @@
+.PlayingCard {
+    width: '18rem';
+    border:1px solid black;
+}
+
+.suit-sign {
+    font-size: 5em;
+}
+
+.suit-hearts {
+    color: red;
+}
+
+.suit-diamonds {
+    color: red;
+}
+
+.suit-spades {
+    color: black;
+}
+
+.suit-clubs {
+    color: black;
+}
