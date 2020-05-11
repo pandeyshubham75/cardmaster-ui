@@ -21,16 +21,60 @@ import './Deck.css';
 
 import Card from "../card/Card";
 
+import CardGroup from 'react-bootstrap/CardGroup';
+
+const cards = [];
+
 class Deck extends React.Component {
+
     render() {
+        this.generateCards();
         return (
         <div className="Deck">
-            <Card number='1' suit='hearts'></Card>
-            <Card number='11' suit='spades'></Card>
-            <Card number='12' suit='diamonds'></Card>
-            <Card number='13' suit='clubs'></Card>
+            <CardGroup>
+                {cards.map(
+                    ({ number, suit }, index) => {
+                        return <Card number={number} suit={suit} key={index}>    
+                        </Card>
+                    }
+                )}
+            </CardGroup>
         </div>
         )
+    }
+
+    generateCards() {
+        for (let i = 0; i < 13; i++) {
+            let randomCard = this.generateRandomCard();
+            while (this.checkExistsInDeck(randomCard)) {
+                randomCard = this.generateRandomCard();
+            }
+            cards.push(randomCard);
+        }
+    }
+
+    checkExistsInDeck({ number, suit }) {
+        if (!number || !suit) return false;
+        for (let i = 0; i < cards.length; i++) {
+            if (cards[i].number && cards[i].suit &&
+                number == cards[i].number &&
+                suit == cards[i].suit)
+                return true;
+        }
+        return false;
+    }
+
+    generateRandomCard() {
+        const suits = ['hearts', 'spades', 'diamonds', 'clubs'];
+        return {
+            number: this.getRandomIntegerInRange({ start: 1, end: 13 }),
+            suit: suits[this.getRandomIntegerInRange({ start: 0, end: 3 })]
+        };
+    }
+    
+    getRandomIntegerInRange({ start= 0, end }) {
+        let number = (Math.round(Math.random() * 100) % (end - start + 1));
+        return number+start;
     }
 }
 
