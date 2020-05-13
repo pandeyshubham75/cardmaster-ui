@@ -30,16 +30,24 @@ class Deck extends React.Component {
     render() {
         this.generateCards();
         return (
-        <div className="Deck">
-            <CardGroup>
-                {cards.map(
-                    ({ number, suit }, index) => {
-                        return <Card number={number} suit={suit} key={index}>    
-                        </Card>
-                    }
-                )}
-            </CardGroup>
-        </div>
+            <div className="Deck">
+                <CardGroup>
+                    {cards.map(
+                        ({ number, suit }, index) => {
+                            return <Card number={number} suit={suit} key={index}>    
+                            </Card>
+                        }
+                    )}
+                </CardGroup>
+            </div>
+        )
+    }
+
+    getCompactDeck() {
+        return (
+            <div className="Deck">
+                
+            </div>
         )
     }
 
