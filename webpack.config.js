@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -30,5 +31,12 @@ module.exports = {
         publicPath: 'http://localhost:3000/dist/',
         hotOnly: true
     },
-    plugins: [new webpack.HotModuleReplacementPlugin()]
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new CopyPlugin({
+            patterns: [
+                path.resolve(__dirname, 'public', 'index.html')
+            ],
+        })
+    ]
 }
