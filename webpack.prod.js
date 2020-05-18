@@ -4,7 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
-    mode: 'development',
+    mode: 'production',
     module: {
         rules: [
             {
@@ -25,14 +25,7 @@ module.exports = {
         publicPath: '/dist/',
         filename: 'bundle.js'
     },
-    devServer: {
-        contentBase: path.join(__dirname, 'dist/'),
-        port: 3000,
-        publicPath: 'http://localhost:3000/dist/',
-        hotOnly: true
-    },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
         new CopyPlugin({
             patterns: [
                 {
