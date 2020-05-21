@@ -65,8 +65,8 @@ class Deck extends React.Component {
         if (!number || !suit) return false;
         for (let i = 0; i < cards.length; i++) {
             if (cards[i].number && cards[i].suit &&
-                number == cards[i].number &&
-                suit == cards[i].suit)
+                number === cards[i].number &&
+                suit === cards[i].suit)
                 return true;
         }
         return false;
