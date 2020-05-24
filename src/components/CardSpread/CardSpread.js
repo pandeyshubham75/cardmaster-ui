@@ -1,36 +1,31 @@
 /* 
- * Deck component for the cards game
- * Deck is a container for cards
- * The term deck can be misleading to mean like pile
- * But it means any group of cards (may be even a single card)
- * A Deck can be a pile, or another group of cards
- * Deck's responsibility is to decide whether it's a revealed deck, or an unrevealed deck
- * Compacted deck (with count on reverse side) and spread-out deck is also possible
- * Decks in consideration:
- * 1. My game deck
- * 2. My revealed (trick) deck
- * 3. Other players' deck
- * 4. Discarded Pile Deck
- * 5. Still In contention Deck
- * 6. Ability to make a custom deck for game
- * 7. My WON Deck
+ * CardSpread component for the cards game
+ * CardSpread is simply cards that are spread and visible
+ * CardSpreads in consideration:
+ * 1. My game CardSpread
+ * 2. My revealed (trick) CardSpread
+ * 3. Other players' CardSpread
 **/
 
 import React from 'react';
-import './Deck.css';
+import './CardSpread.css';
 
 import Card from "../card/Card";
 
 import CardGroup from 'react-bootstrap/CardGroup';
 
-const cards = [];
+let cards = [];
 
-class Deck extends React.Component {
+class CardSpread extends React.Component {
 
     render() {
-        this.generateCards();
+        if (!this.props.cards || !this.props.cards.length){
+            this.generateCards();
+        } else {
+            cards = this.props.cards;
+        }
         return (
-            <div className="Deck">
+            <div className="CardSpread">
                 <CardGroup>
                     {cards.map(
                         ({ number, suit }, index) => {
@@ -43,25 +38,26 @@ class Deck extends React.Component {
         )
     }
 
-    getCompactDeck() {
+    getCompactCardSpread() {
         return (
-            <div className="Deck">
+            <div className="CardSpread">
                 
             </div>
         )
     }
 
     generateCards() {
+        cards = [];
         for (let i = 0; i < 13; i++) {
             let randomCard = this.generateRandomCard();
-            while (this.checkExistsInDeck(randomCard)) {
+            while (this.checkExistsInCardSpread(randomCard)) {
                 randomCard = this.generateRandomCard();
             }
             cards.push(randomCard);
         }
     }
 
-    checkExistsInDeck({ number, suit }) {
+    checkExistsInCardSpread({ number, suit }) {
         if (!number || !suit) return false;
         for (let i = 0; i < cards.length; i++) {
             if (cards[i].number && cards[i].suit &&
@@ -86,4 +82,4 @@ class Deck extends React.Component {
     }
 }
 
-export default Deck;
+export default CardSpread;

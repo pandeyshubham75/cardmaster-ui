@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import Deck from './components/deck/Deck'
+import CardSpread from './components/CardSpread/CardSpread';
+import PlayArena from './components/PlayArena/PlayArena';
 
 const App = () => (
     <div className="App">
         <h1>Welcome to Cardsking!</h1>
-        <Deck></Deck>
+        <PlayArena></PlayArena>
+        <CardSpread></CardSpread>
     </div>
 );
 
